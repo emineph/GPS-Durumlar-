@@ -1,254 +1,61 @@
-
 <!DOCTYPE html>
-<!-- saved from url=(0095)file:///C:/Users/emine.pehlivan/Downloads/Haftal%C4%B1k%20GPS%20Durumu%20Raporug%C3%BCncel.html -->
-<html lang="tr"><head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Haftalık GPS Durumu Raporu</title>
+    <!-- Chart.js CDN -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    
-
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            padding: 20px;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            overflow: hidden;
-        }
-        
-        .header {
-            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
-            color: white;
-            padding: 30px;
-            text-align: center;
-        }
-        
-        .header h1 {
-            font-size: 2.5em;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        }
-        
-        .date-info {
-            font-size: 1.1em;
-            opacity: 0.9;
-        }
-        
-        .content {
-            padding: 30px;
-        }
-        
-        .summary-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin-bottom: 40px;
-        }
-        
-        .card {
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-            color: white;
-            padding: 25px;
-            border-radius: 10px;
-            text-align: center;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            transform: translateY(0);
-            transition: transform 0.3s ease;
-        }
-        
-        .card:hover {
-            transform: translateY(-5px);
-        }
-        
-        .card h3 {
-            font-size: 1.2em;
-            margin-bottom: 10px;
-        }
-        
-        .card .number {
-            font-size: 2.5em;
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
-        
-        .card.completion {
-            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
-            color: #2c3e50;
-        }
-        
-        .card.efficiency {
-            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
-            color: #2c3e50;
-        }
-        
-        .section {
-            margin-bottom: 40px;
-        }
-        
-        .section h2 {
-            color: #2c3e50;
-            font-size: 1.8em;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 3px solid #3498db;
-        }
-        
-        .table-container {
-            overflow-x: auto;
-            margin-bottom: 30px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-        
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            background: white;
-        }
-        
-        th, td {
-            padding: 15px;
-            text-align: center;
-            border-bottom: 1px solid #eee;
-        }
-        
-        th {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        
-        tr:hover {
-            background-color: #f8f9fa;
-        }
-        
-        .chart-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-            gap: 30px;
-            margin-bottom: 40px;
-        }
-        
-        .chart-box {
-            background: white;
-            padding: 25px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-        
-        .chart-title {
-            text-align: center;
-            margin-bottom: 20px;
-            color: #2c3e50;
-            font-size: 1.3em;
-            font-weight: 600;
-        }
-        
-        .insights {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 30px;
-            border-radius: 10px;
-            margin-top: 30px;
-        }
-        
-        .insights h3 {
-            font-size: 1.5em;
-            margin-bottom: 20px;
-        }
-        
-        .insights ul {
-            list-style: none;
-            padding: 0;
-        }
-        
-        .insights li {
-            padding: 10px 0;
-            border-bottom: 1px solid rgba(255,255,255,0.2);
-        }
-        
-        .insights li:last-child {
-            border-bottom: none;
-        }
-        
-        .status-indicator {
-            display: inline-block;
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            margin-right: 8px;
-        }
-        
+        /* --- SENİN MEVCUT CSS KODUN --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; padding: 20px; }
+        .container { max-width: 1200px; margin: 0 auto; background: white; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); overflow: hidden; }
+        .header { background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%); color: white; padding: 30px; text-align: center; }
+        .header h1 { font-size: 2.5em; margin-bottom: 10px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+        .date-info { font-size: 1.1em; opacity: 0.9; }
+        .content { padding: 30px; }
+        .summary-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-bottom: 40px; }
+        .card { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white; padding: 25px; border-radius: 10px; text-align: center; box-shadow: 0 5px 15px rgba(0,0,0,0.1); transform: translateY(0); transition: transform 0.3s ease; }
+        .card:hover { transform: translateY(-5px); }
+        .card h3 { font-size: 1.2em; margin-bottom: 10px; }
+        .card .number { font-size: 2.5em; font-weight: bold; margin-bottom: 5px; }
+        .card.completion { background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%); color: #2c3e50; }
+        .card.efficiency { background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%); color: #2c3e50; }
+        .section { margin-bottom: 40px; }
+        .section h2 { color: #2c3e50; font-size: 1.8em; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 3px solid #3498db; }
+        .table-container { overflow-x: auto; margin-bottom: 30px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        table { width: 100%; border-collapse: collapse; background: white; }
+        th, td { padding: 15px; text-align: center; border-bottom: 1px solid #eee; }
+        th { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+        tr:hover { background-color: #f8f9fa; }
+        .chart-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 30px; margin-bottom: 40px; }
+        .chart-box { background: white; padding: 25px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        .chart-title { text-align: center; margin-bottom: 20px; color: #2c3e50; font-size: 1.3em; font-weight: 600; }
+        .insights { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 30px; border-radius: 10px; margin-top: 30px; }
+        .insights h3 { font-size: 1.5em; margin-bottom: 20px; }
+        .insights ul { list-style: none; padding: 0; }
+        .insights li { padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.2); }
+        .insights li:last-child { border-bottom: none; }
+        .status-indicator { display: inline-block; width: 12px; height: 12px; border-radius: 50%; margin-right: 8px; }
         .status-good { background-color: #27ae60; }
         .status-warning { background-color: #f39c12; }
         .status-critical { background-color: #e74c3c; }
-        
-        .footer {
-            text-align: center;
-            padding: 20px;
-            background: #f8f9fa;
-            color: #6c757d;
-            font-size: 0.9em;
-        }
-        
+        .footer { text-align: center; padding: 20px; background: #f8f9fa; color: #6c757d; font-size: 0.9em; }
         @media (max-width: 768px) {
-            .header h1 {
-                font-size: 2em;
-            }
-            
-            .summary-cards {
-                grid-template-columns: 1fr;
-            }
-            
-            .chart-container {
-                grid-template-columns: 1fr;
-            }
+            .header h1 { font-size: 2em; }
+            .summary-cards { grid-template-columns: 1fr; }
+            .chart-container { grid-template-columns: 1fr; }
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
-<style>
-            @keyframes fadeInUp {
-                from {
-                    opacity: 0;
-                    transform: translateY(30px);
-                }
-                to {
-                    opacity: 1;
-                    transform: translateY(0);
-                }
-            }
-        </style><style>
-            @keyframes fadeInUp {
-                from {
-                    opacity: 0;
-                    transform: translateY(30px);
-                }
-                to {
-                    opacity: 1;
-                    transform: translateY(0);
-                }
-            }
-        </style></head>
+</head>
 <body>
     <div class="container">
+        <!-- HEADER -->
         <div class="header">
             <h1>🛰️ GPS Durumu Haftalık Raporu</h1>
             <div class="date-info">
@@ -256,29 +63,29 @@
                 <span id="lastUpdate">Son Güncelleme: 26 Ağustos 2025</span>
             </div>
         </div>
-        
+
+        <!-- CONTENT -->
         <div class="content">
             <!-- Özet Kartları -->
             <div class="summary-cards">
-                <div class="card" style="animation: 0.6s ease 0s 1 normal forwards running fadeInUp;">
+                <div class="card">
                     <h3>Toplam Araç</h3>
                     <div class="number" id="totalVehicles">608</div>
                     <div>Kontrol Edilemedi: 306</div>
                 </div>
-                <div class="card completion" style="animation: 0.6s ease 0s 1 normal forwards running fadeInUp;">
+                <div class="card completion">
                     <h3>Tamamlanma Oranı</h3>
                     <div class="number" id="completionRate">49.67%</div>
                     <div>Hedef: %95</div>
                 </div>
-                
-                <div class="card" style="animation: 0.6s ease 0s 1 normal forwards running fadeInUp;">
+                <div class="card">
                     <h3>Bekleyen İşlem</h3>
                     <div class="number" id="pendingWork">306</div>
                     <div>Tamir Bekleyen</div>
                 </div>
             </div>
-            
-            <!-- Ana Tablo -->
+
+            <!-- Tablo Örneği -->
             <div class="section">
                 <h2>📊 Haftalık Durum Tablosu</h2>
                 <div class="table-container">
@@ -290,311 +97,80 @@
                                 <th>Tamamlandı</th>
                                 <th>Kontrol Edilemedi</th>
                                 <th>Tamamlanma Oranı</th>
-                                
-                            </tr>
-                        </thead>
-                        <tbody id="mainTable">
-
-                            <tr>
-                                <td><strong>Treyler</strong></td>
-                                <td>182</td>
-                                <td>8</td>
-                                <td>174</td>
-                                <td>4.40%</td>
-                                
-                            </tr>
-                            <tr>
-                                <td><strong>Şasi</strong></td>
-                                <td>121</td>
-                                <td>4</td>
-                                <td>117</td>
-                                <td>3.31%</td>
-                                
-                            </tr>
-                            <tr>
-                                <td><strong>Swap Body</strong></td>
-                                <td>12</td>
-                                <td>0</td>
-                                <td>12</td>
-                                <td>0.00%</td>
-                                
-                            </tr>
-                            <tr>
-                                <td><strong>Konteyner</strong></td>
-                                <td>3</td>
-                                <td>0</td>
-                                <td>3</td>
-                                <td>0%</td>
-                                
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            
-            <!-- Hafta İşlem Durumu -->
-            <div class="section">
-                <h2>🔧 Hafta İşlem Durumu Detayı</h2>
-                <div class="table-container">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Kategori</th>
-                                <th>Treyler</th>
-                                <th>Şasi</th>
-                                <th>Swap Body</th>
-                                <th>Konteyner</th>
-                                <th>Genel Toplam</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td><strong>Yurt içi Canlandırılan</strong></td>
-                                <td>0</td>
-                                <td>4</td>
-                                <td>0</td>
-                                <td>0</td>
-                                <td>4</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Yurt dışı Canlandırılan</strong></td>
-                                <td>1</td>
-                                <td>0</td>
-                                <td>0</td>
-                                <td>0</td>
-                                <td>1</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Y. içi Batarya Dolu Atmayan</strong></td>
-                                <td>4</td>
-                                <td>0</td>
-                                <td>0</td>
-                                <td>0</td>
-                                <td>4</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Y. dışı Batarya Dolu Atmayan</strong></td>
-                                <td>3</td>
-                                <td>0</td>
-                                <td>0</td>
-                                <td>0</td>
-                                <td>3</td>
-                            </tr>
+                            <tr><td>Treyler</td><td>182</td><td>8</td><td>174</td><td>4.40%</td></tr>
+                            <tr><td>Şasi</td><td>121</td><td>4</td><td>117</td><td>3.31%</td></tr>
+                            <tr><td>Swap Body</td><td>12</td><td>0</td><td>12</td><td>0.00%</td></tr>
+                            <tr><td>Konteyner</td><td>3</td><td>0</td><td>3</td><td>0%</td></tr>
                         </tbody>
                     </table>
                 </div>
             </div>
-            
+
             <!-- Grafikler -->
             <div class="section">
                 <h2>📈 Görsel Analiz</h2>
                 <div class="chart-container">
                     <div class="chart-box">
                         <div class="chart-title">Kategori Bazında Dağılım</div>
-                        <canvas id="categoryChart" width="505" height="505" style="display: block; box-sizing: border-box; height: 505px; width: 505px;"></canvas>
+                        <canvas id="categoryChart"></canvas>
                     </div>
                     <div class="chart-box">
                         <div class="chart-title">Tamamlanma Oranları</div>
-                        <canvas id="completionChart" width="505" height="252" style="display: block; box-sizing: border-box; height: 252px; width: 505px;"></canvas>
+                        <canvas id="completionChart"></canvas>
                     </div>
                     <div class="chart-box">
                         <div class="chart-title">Haftalık İşlem Trendi</div>
-                        <canvas id="trendChart" width="505" height="252" style="display: block; box-sizing: border-box; height: 252px; width: 505px;"></canvas>
+                        <canvas id="trendChart"></canvas>
                     </div>
                     <div class="chart-box">
                         <div class="chart-title">İşlem Türü Dağılımı</div>
-                        <canvas id="operationChart" width="505" height="505" style="display: block; box-sizing: border-box; height: 505px; width: 505px;"></canvas>
+                        <canvas id="operationChart"></canvas>
                     </div>
                 </div>
             </div>
-            
-            <!-- İstatistiksel Analiz ve İçgörüler -->
-            <div class="insights">
-                <h3>🎯 Haftalık İstatistiksel Analiz</h3>
-                <ul>
-                    <li><strong>Haftalık Durum</strong> Tüm kategorilerde bu hafta tamamlanma oranı %3.77'dir</li>
-                    <li><strong>En Düşük Performans:</strong> Swap Body ve Konteyner kategorilerinde bu hafta %0 tamamlanma</li>
-                    <li><strong>Toplam Verimlilik:</strong> 608 araçtan 302 tanesi tamamlandı (%49.67)</li>
-                    <li><strong>Öncelik Alanı:</strong> Treyler kategorisi en büyük hacme sahip (174 araç)</li>
-                    
-                    
-                </ul>
-            </div>
         </div>
-        
+
         <div class="footer">
             Bu rapor Emine Pehlivan tarafından oluşturulmuştur. | 
             Son güncellenme: <span id="footerDate">26.08.2025 09:13:30</span>
         </div>
     </div>
-    
+
     <script>
-        // Tarih güncelleme
         document.getElementById('footerDate').textContent = new Date().toLocaleString('tr-TR');
-        
-        // Grafik renkleri
-        const colors = {
-            primary: ['#667eea', '#764ba2', '#f093fb', '#f5576c'],
-            success: '#27ae60',
-            warning: '#f39c12',
-            danger: '#e74c3c'
-        };
-        
-        // Kategori Dağılım Grafiği
-        const categoryCtx = document.getElementById('categoryChart').getContext('2d');
-        new Chart(categoryCtx, {
+
+        const colors = { primary: ['#667eea', '#764ba2', '#f093fb', '#f5576c'] };
+
+        // Grafikler
+        new Chart(document.getElementById('categoryChart'), {
             type: 'doughnut',
             data: {
                 labels: ['Treyler', 'Şasi', 'Swap Body', 'Konteyner'],
-                datasets: [{
-                    data: [182, 121, 12, 3],
-                    backgroundColor: colors.primary,
-                    borderWidth: 3,
-                    borderColor: '#fff'
-                }]
+                datasets: [{ data: [182,121,12,3], backgroundColor: colors.primary, borderWidth: 3, borderColor:'#fff' }]
             },
-            options: {
-                responsive: true,
-                plugins: {
-                    legend: {
-                        position: 'bottom',
-                        labels: {
-                            padding: 20,
-                            usePointStyle: true
-                        }
-                    }
-                }
-            }
+            options: { responsive:true, plugins:{ legend:{ position:'bottom', labels:{ usePointStyle:true } } } }
         });
-        
-        // Tamamlanma Oranları Grafiği
-        const completionCtx = document.getElementById('completionChart').getContext('2d');
-        new Chart(completionCtx, {
-            type: 'bar',
-            data: {
-                labels: ['Treyler', 'Şasi', 'Swap Body', 'Konteyner'],
-                datasets: [{
-                    label: 'Tamamlanma Oranı (%)',
-                    data: [4.40, 3.31, 0.00, 0],
-                    backgroundColor: colors.primary,
-                    borderRadius: 8,
-                    borderSkipped: false
-                }]
-            },
-            options: {
-                responsive: true,
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        max: 10,
-                        ticks: {
-                            callback: function(value) {
-                                return value + '%';
-                            }
-                        }
-                    }
-                },
-                plugins: {
-                    legend: {
-                        display: false
-                    }
-                }
-            }
-        });
-        
-        // Trend Grafiği (örnek veri)
-        const trendCtx = document.getElementById('trendChart').getContext('2d');
-        new Chart(trendCtx, {
-            type: 'line',
-            data: {
-                labels: ['Hafta 30', 'Hafta 31', 'Hafta 32', 'Hafta 33', 'Hafta 34'],
-                datasets: [{
-                    label: 'Tamamlanan İşlemler',
-                    data: [15, 18, 12, 20, 12],
-                    borderColor: colors.primary[0],
-                    backgroundColor: colors.primary[0] + '20',
-                    fill: true,
-                    tension: 0.4,
-                    pointBackgroundColor: colors.primary[0],
-                    pointBorderColor: '#fff',
-                    pointBorderWidth: 2,
-                    pointRadius: 6
-                }]
-            },
-            options: {
-                responsive: true,
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                },
-                plugins: {
-                    legend: {
-                        display: false
-                    }
-                }
-            }
-        });
-        
-        // İşlem Türü Dağılımı
-        const operationCtx = document.getElementById('operationChart').getContext('2d');
-        new Chart(operationCtx, {
-            type: 'polarArea',
-            data: {
-                labels: ['Yurt içi Canlandırılan', 'Yurt dışı Canlandırılan', 'Y. içi Batarya Dolu', 'Y. dışı Batarya Dolu'],
-                datasets: [{
-                    data: [4, 1, 4, 3],
-                    backgroundColor: colors.primary,
-                    borderWidth: 2,
-                    borderColor: '#fff'
-                }]
-            },
-            options: {
-                responsive: true,
-                plugins: {
-                    legend: {
-                        position: 'bottom',
-                        labels: {
-                            padding: 15,
-                            usePointStyle: true
-                        }
-                    }
-                }
-            }
-        });
-        
-        // Hover efektleri ve animasyonlar
-        document.addEventListener('DOMContentLoaded', function() {
-            // Kartlara animasyon ekle
-            const cards = document.querySelectorAll('.card');
-            cards.forEach((card, index) => {
-                card.style.animationDelay = `${index * 0.1}s`;
-                card.style.animation = 'fadeInUp 0.6s ease forwards';
-            });
-        });
-        
-        // CSS animasyonu
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes fadeInUp {
-                from {
-                    opacity: 0;
-                    transform: translateY(30px);
-                }
-                to {
-                    opacity: 1;
-                    transform: translateY(0);
-                }
-            }
-        `;
-        document.head.appendChild(style);
-        
-        // Gerçek zamanlı veri güncelleme fonksiyonu (Google Sheets API ile entegre edilebilir)
-        function updateData(newData) {
-            // Bu fonksiyon haftalık olarak yeni verilerle çağrılacak
-            console.log('Yeni veriler güncellendi:', newData);
-            // Tabloları ve grafikleri güncelle
-        }
-    </script>
 
-</body></html>
+        new Chart(document.getElementById('completionChart'), {
+            type:'bar',
+            data:{ labels:['Treyler','Şasi','Swap Body','Konteyner'], datasets:[{ label:'Tamamlanma Oranı (%)', data:[4.4,3.31,0,0], backgroundColor:colors.primary, borderRadius:8, borderSkipped:false }] },
+            options:{ responsive:true, scales:{ y:{ beginAtZero:true, max:10, ticks:{ callback:function(v){return v+'%';} } } }, plugins:{ legend:{ display:false } } }
+        });
+
+        new Chart(document.getElementById('trendChart'), {
+            type:'line',
+            data:{ labels:['Hafta 30','Hafta 31','Hafta 32','Hafta 33','Hafta 34'], datasets:[{ label:'Tamamlanan İşlemler', data:[15,18,12,20,12], borderColor:colors.primary[0], backgroundColor:colors.primary[0]+'20', fill:true, tension:0.4, pointBackgroundColor:colors.primary[0], pointBorderColor:'#fff', pointBorderWidth:2, pointRadius:6 }] },
+            options:{ responsive:true, scales:{ y:{ beginAtZero:true } }, plugins:{ legend:{ display:false } } }
+        });
+
+        new Chart(document.getElementById('operationChart'), {
+            type:'polarArea',
+            data:{ labels:['Yurt içi Canlandırılan','Yurt dışı Canlandırılan','Y. içi Batarya Dolu','Y. dışı Batarya Dolu'], datasets:[{ data:[4,1,4,3], backgroundColor:colors.primary, borderWidth:2, borderColor:'#fff' }] },
+            options:{ responsive:true, plugins:{ legend:{ position:'bottom', labels:{ usePointStyle:true } } } }
+        });
+    </script>
+</body>
+</html>
